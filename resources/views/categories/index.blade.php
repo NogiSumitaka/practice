@@ -6,18 +6,23 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
-    <body>
-        <h1>Blog Name</h1>
-        <a href="/posts/create">create</a>
-        <div class='posts'>
-            @foreach($posts as $post)
-            <div class='post'>
-                <a href="/posts/{{ $post->id }}"><h2 class='title'>{{$post->title }}</h2></a>
-                <a href="">{{ $post->category->name }}</a>
-                <p class='body'>{{ $post->body }}</p>
+    <x-app-layout>
+        <x-slot name="header">
+            (ヘッダー名)
+        </x-slot>
+        <body>
+            <h1>Blog Name</h1>
+            <a href="/posts/create">create</a>
+            <div class='posts'>
+                @foreach($posts as $post)
+                <div class='post'>
+                    <a href="/posts/{{ $post->id }}"><h2 class='title'>{{$post->title }}</h2></a>
+                    <a href="">{{ $post->category->name }}</a>
+                    <p class='body'>{{ $post->body }}</p>
+                </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
-        <div class='paginate'>{{ $posts->links() }}</div>
-    </body>
+            <div class='paginate'>{{ $posts->links() }}</div>
+        </body>
+    </x-app-layout>
 </html>
